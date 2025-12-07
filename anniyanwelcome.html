@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anniyan Welcome</title>
-	<link rel="stylesheet" type="text/css" href="Anniyancom.css">
+	<link rel="stylesheet" type="text/css" href="anniyancom.css">
 	<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Harish040805/anniyan/refs/heads/main/anniyanfavicon.webp">
 </head>
 <body>
     <div class="splash-screen" id="splash-screen"></div>
     <div class="main-content" id="main-content">
-  <button class="Enter" onclick="window.location.href='Anniyan Letter.html'">.</button>
+  <button class="Enter" onclick="window.location.href='anniyanletter.html'">.</button>
     </div>
 <script>
 function speak(text, voice) {
@@ -51,10 +51,8 @@ function selectDeepVoice(voices) {
     return male[0] || voices[0];
 }
 
-// Load the voice first
 loadVoice().then(v => scaryVoice = v);
 
-// Trigger speech after splash screen disappears
 const splashScreen = document.getElementById('splash-screen');
 const mainContent = document.getElementById('main-content');
 
@@ -69,7 +67,5 @@ setTimeout(async function() {
     }
 }, 6000); 
 </script>
-
 </body>
-
 </html>
