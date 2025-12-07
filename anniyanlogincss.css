@@ -1,5 +1,5 @@
         body {
-            background-image: url('C:/Users/HP/OneDrive/Desktop/Anniyan.com/standanniyan.jpg');
+            background-image: url('https://raw.githubusercontent.com/Harish040805/anniyan/refs/heads/main/standanniyan.jpg');
             background-size: contain;
             background-attachment: fixed;
             margin: 0;
@@ -109,3 +109,4 @@
         #story {
             color: white;
         }
+
