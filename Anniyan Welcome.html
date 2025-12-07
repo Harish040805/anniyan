@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniyan Welcome</title>
+	<link rel="stylesheet" type="text/css" href="Anniyancom.css">
+	<link rel="icon" type="image/png" href="https://thumbs.dreamstime.com/b/abstract-simple-bull-head-vector-logo-concept-illustration-buffalo-head-logo-taurus-head-logo-bull-animal-logo-sign-abstract-107929573.jpg">
+</head>
+<body>
+    <div class="splash-screen" id="splash-screen"></div>
+    <div class="main-content" id="main-content">
+  <button class="Enter" onclick="window.location.href='Anniyan Letter.html'">.</button>
+    </div>
+<script>
+function speak(text, voice) {
+    return new Promise(resolve => {
+        const u = new SpeechSynthesisUtterance(text);
+        u.voice = voice;
+        u.pitch = 0.4;
+        u.rate = 0.85;
+        u.volume = 1.0;
+        u.onend = resolve;
+        speechSynthesis.speak(u);
+    });
+}
+
+let scaryVoice = null;
+
+function loadVoice() {
+    return new Promise(resolve => {
+        let voices = speechSynthesis.getVoices();
+        if (voices.length !== 0) {
+            resolve(selectDeepVoice(voices));
+        } else {
+            speechSynthesis.onvoiceschanged = () => {
+                voices = speechSynthesis.getVoices();
+                resolve(selectDeepVoice(voices));
+            };
+        }
+    });
+}
+
+function selectDeepVoice(voices) {
+    let male = voices.filter(v =>
+        v.name.toLowerCase().includes("male") ||
+        v.name.toLowerCase().includes("deep") ||
+        v.name.toLowerCase().includes("fred") ||
+        v.name.toLowerCase().includes("bass")
+    );
+    return male[0] || voices[0];
+}
+
+// Load the voice first
+loadVoice().then(v => scaryVoice = v);
+
+// Trigger speech after splash screen disappears
+const splashScreen = document.getElementById('splash-screen');
+const mainContent = document.getElementById('main-content');
+
+setTimeout(async function() {
+    splashScreen.style.display = 'none';
+    mainContent.classList.add('show');
+
+    if (scaryVoice) {
+        await speak("Sarva Dharmaan Pari Tyajya Maam Ekam Sarnam Vraja! Aham Thvaam Sarva Paa peap you Mokshish yaami! Ma Chusaa! He who comes from hell is not afraid of hot ashes! Anniyan dot com!", scaryVoice);
+    } else {
+        loadVoice().then(v => speak("Sarva Dharmaan Pari Tyajya Maam Ekam Sarnam Vraja! Aham Thvaam Sarva Paa peap you Mokshish yaami! Ma Chusaa! He who comes from hell is not afraid of hot ashes! Anniyan dot com!", v));
+    }
+}, 6000); 
+</script>
+
+</body>
+</html>

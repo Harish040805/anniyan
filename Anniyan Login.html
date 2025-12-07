@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anniyan Login</title>
+<link rel="stylesheet" type="text/css" href="Anniyan Login.css">
+<link rel="icon" type="image/png" href="https://thumbs.dreamstime.com/b/abstract-simple-bull-head-vector-logo-concept-illustration-buffalo-head-logo-taurus-head-logo-bull-animal-logo-sign-abstract-107929573.jpg">
+</head>
+<body>
+<div class="splash-screen" id="splash-screen"></div>
+<div class="main-content" id="main-content">
+<center>
+<div class="Anniyan-com-div" style="margin-top: 5px;">
+<h1 class="Anniyan-com">Anniyan.com</h1>
+</div>
+</center>
+<div class="login-form">
+<h2>Enter Your Credentials...</h2>
+<form id="login-form">
+<input type="text" name="username" placeholder="Username">
+<input type="password" name="password" placeholder="Password">
+<button type="submit">Login</button>
+<div class="error-message" id="error-message"></div>
+</form>
+</div>
+</div>
+
+<script>
+const splashScreen = document.getElementById('splash-screen');
+const mainContent = document.getElementById('main-content');
+let scaryVoice = null;
+
+setTimeout(() => {
+splashScreen.style.display = 'none';
+mainContent.classList.add('show');
+speakIntro();
+}, 6000);
+
+function speak(text, voice) {
+return new Promise(resolve => {
+const u = new SpeechSynthesisUtterance(text);
+u.voice = voice;
+u.pitch = 0.4;
+u.rate = 0.85;
+u.volume = 1.0;
+u.onend = resolve;
+speechSynthesis.speak(u);
+});
+}
+
+function loadVoice() {
+return new Promise(resolve => {
+let v = speechSynthesis.getVoices();
+if (v.length !== 0) resolve(selectDeepVoice(v));
+else speechSynthesis.onvoiceschanged = () => {
+v = speechSynthesis.getVoices();
+resolve(selectDeepVoice(v));
+};
+});
+}
+
+function selectDeepVoice(voices) {
+let male = voices.filter(v =>
+v.name.toLowerCase().includes("male") ||
+v.name.toLowerCase().includes("deep") ||
+v.name.toLowerCase().includes("fred") ||
+v.name.toLowerCase().includes("bass")
+);
+return male[0] || voices[0];
+}
+
+loadVoice().then(v => scaryVoice = v);
+
+async function speakIntro() {
+while(!scaryVoice) await new Promise(r=>setTimeout(r,100));
+await speak("Welcome to Anniyan dot com", scaryVoice);
+await speak("Enter your credentials", scaryVoice);
+}
+
+function speakError(text) {
+if(!scaryVoice) return;
+speechSynthesis.cancel();
+speak(text, scaryVoice);
+}
+
+const loginForm = document.getElementById("login-form");
+const errorMessage = document.getElementById("error-message");
+
+loginForm.addEventListener("submit", e => {
+e.preventDefault();
+const username = loginForm.username.value.trim();
+const password = loginForm.password.value.trim();
+errorMessage.textContent = "";
+
+if(username === "") {
+errorMessage.textContent = "The username should not be left empty as per Garuda Purana!";
+speakError("The username should not be left empty as per Garuda Purana!");
+return;
+}
+if(password === "") {
+errorMessage.textContent = "The password field should not be left empty as per Garuda Purana!";
+speakError("The password field should not be left empty as per Garuda Purana!");
+return;
+}
+if(!/[0-9]/.test(password)) {
+errorMessage.textContent = "Password must contain at least one number as said in Garuda Purana!";
+speakError("Password must contain at least one number as said in Garuda Purana!");
+return;
+}
+if(!/[!@#$%^&*]/.test(password)) {
+errorMessage.textContent = "Password must contain at least one special symbol to enter the site!";
+speakError("Password must contain at least one special symbol to enter the site!");
+return;
+}
+window.location.href = "C:/Users/HP/OneDrive/Desktop/Anniyan.com/Anniyan Welcome.html";
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniyan Letter</title>
+	<link rel="stylesheet" type="text/css" href="Anniyanlettercss.css">
+	<link rel="icon" type="image/png" href="https://thumbs.dreamstime.com/b/abstract-simple-bull-head-vector-logo-concept-illustration-buffalo-head-logo-taurus-head-logo-bull-animal-logo-sign-abstract-107929573.jpg">
+</head>
+<body>
+    <div class="splash-screen" id="splash-screen"></div>
+    <div class="main-content" id="main-content">
+<div class="letter-container">
+Hello! This is Anniyan!
+<br>
+Tell your problems to Anniyan. All your problems will be solved as said by lord Vishnu to Garuda in Garuda Purana. 
+If you post a letter to Anniyan saying Thank you, you will get the blessings of Anniyan. A man from x called Ramasamy refused to post 
+a Thank you letter to Anniyan. As a result, he died by (mandai vedithu, ratham kakki). If you refuse to post a
+Thank you letter to Anniyan, you will die the same way how Ramasamy died.
+</div>
+<br><br>
+<center>
+  <button class="Enter" onclick="window.location.href='Anniyan Main.html'">Want to talk to Anniyan?</button>
+</center>
+    </div>
+<script>
+const splashScreen = document.getElementById('splash-screen');
+const mainContent = document.getElementById('main-content');
+
+setTimeout(async function() {
+    splashScreen.style.display = 'none';
+    mainContent.classList.add('show');
+
+    if (scaryVoice) {
+        await speak("Sarva Dharmaan Pari Tyajya Maam Ekam Sarnam Vraja! Aham Thvaam Sarva Paa peap you Mokshish yaami! Ma Chusaa! He who comes from hell is not afraid of hot ashes! Anniyan dot com!", scaryVoice);
+    } else {
+        loadVoice().then(v => speak("Sarva Dharmaan Pari Tyajya Maam Ekam Sarnam Vraja! Aham Thvaam Sarva Paa peap you Mokshish yaami! Ma Chusaa! He who comes from hell is not afraid of hot ashes! Anniyan dot com!", v));
+    }
+}, 6000); 
+</script>
+
+</body>
+</html>

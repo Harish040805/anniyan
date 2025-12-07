@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniyan Main</title>
+	<link rel="stylesheet" type="text/css" href="Anniyan.css">
+	<link rel="icon" type="image/png" href="https://thumbs.dreamstime.com/b/abstract-simple-bull-head-vector-logo-concept-illustration-buffalo-head-logo-taurus-head-logo-bull-animal-logo-sign-abstract-107929573.jpg">
+</head>
+<body>
+  <div class="splash-screen" id="splash-screen"></div>
+  <div class="main-content" id="main-content">
+    <center>
+      <div class="Anniyan-com-div">
+        <h1 class="Anniyan-com">ANNIYAN.com</h1>
+      </div>
+      <div class="login-form">
+        <div id="story">WELCOME TO ANNIYAN.COM<br> <br></div>
+        <input type="text" id="input-tag" style="display: none; color: white;">
+        <p id="error-message" style="color: white; display: none;">Fill the field as it is said in Garuda Purana!</p>
+        <div id="gender-buttons" style="display: none;">
+          <br><br>
+          <button id="male-button" type="button" onclick="selectGender('male')" class="Gender">Male</button>
+          <button id="female-button" type="button" onclick="selectGender('female')" class="Gender">Female</button>
+          <button id="transgender-button" type="button" onclick="selectGender('transgender')" class="Gender">Transgender</button>
+        </div>
+        <div id="color-input" style="display: none;">
+          <br><br>
+          <input type="color" id="color-picker" value="#ffffff">
+        </div>
+        <br><br>
+        <button type="button" class="Enter" id="continue-button" onclick="nextPartOfStory()" style="color: white;">Continue</button>
+        <button id="restart-button" type="button" class="Enter" style="display: none;" onclick="restartStory()">Restart</button>
+      </div>
+    </center>
+  </div>
+
+  <script>
+    let storyIndex = 0;
+    let sinisterGender = null;
+    let sinisterColor = null;
+    const stories = [
+      "WELCOME TO ANNIYAN.COM<br><br>",
+      "On the way to Yamapuri, the last sanctuary for the souls that wait <br> on the banks of the Vai Dharani river is nothing but this WEBSITE! <br><br>",
+      `
+        Misanthropist, Disobedient, Rule-breakers, Rebels of the Government, the people who do not work and be Lazy, the people who deceive other people,
+        <br>
+        None of the Rule-breakers can escape the gaze of Anniyan!
+        <br><br>
+      `,
+      "What is the crime you wish to complain about to me? <br><br>", 
+      "What is the name of the Sinister? <br><br>", 
+      "What is the gender of the Sinister? <br><br>", 
+      "What is the age of the Sinister? <br><br>",
+      "What is the color of the Sinister? <br><br>",
+      "Describe the appearance of the Sinister <br><br>",
+      "Don't worry! They will be punished as said in Garuda Purana! <br><br>"
+    ];
+
+    function nextPartOfStory() {
+      if (storyIndex >= 3 && storyIndex <= 8) {
+        if (storyIndex === 5) {
+          if (sinisterGender === null) {
+            document.getElementById("error-message").style.display = "block";
+            return;
+          }
+        } else if (storyIndex === 7) {
+          if (document.getElementById("color-picker").value === "") {
+            document.getElementById("error-message").style.display = "block";
+            return;
+          } else {
+            sinisterColor = document.getElementById("color-picker").value;
+          }
+        } else {
+          if (document.getElementById("input-tag").value.trim() === "") {
+            document.getElementById("error-message").style.display = "block";
+            return;
+          }
+          if (storyIndex === 6 && (isNaN(document.getElementById("input-tag").value) || document.getElementById("input-tag").value < 0 || document.getElementById("input-tag").value > 99)) {
+            document.getElementById("error-message").style.display = "block";
+            return;
+          }
+        }
+      }
+
+      document.getElementById("error-message").style.display = "none";
+      storyIndex++;
+      document.getElementById("story").innerHTML = stories[storyIndex];
+
+      if (storyIndex >= 3 && storyIndex <= 8) {
+        if (storyIndex === 5) {
+          document.getElementById("input-tag").style.display = "none";
+          document.getElementById("gender-buttons").style.display = "block";
+          document.getElementById("color-input").style.display = "none";
+        } else if (storyIndex === 7) {
+          document.getElementById("input-tag").style.display = "none";
+          document.getElementById("gender-buttons").style.display = "none";
+          document.getElementById("color-input").style.display = "block";
+        } else {
+          document.getElementById("input-tag").style.display = "block";
+          document.getElementById("gender-buttons").style.display = "none";
+          document.getElementById("color-input").style.display = "none";
+          if (storyIndex === 6) {
+            document.getElementById("input-tag").type = "number";
+            document.getElementById("input-tag").min = "0";
+            document.getElementById("input-tag").max = "99";
+          } else {
+            document.getElementById("input-tag").type = "text";
+          }
+          document.getElementById("input-tag").value = "";
+        }
+      } else {
+        document.getElementById("input-tag").style.display = "none";
+        document.getElementById("gender-buttons").style.display = "none";
+        document.getElementById("color-input").style.display = "none";
+        document.getElementById("input-tag").value = "";
+      }
+
+      if (storyIndex === stories.length - 1) {
+document.getElementById("continue-button").style.display = "none";
+setTimeout(() => {
+    window.location.href = 'Anniyan Login.html';
+}, 5000);
+      }
+    }
+
+    function selectGender(gender) {
+      sinisterGender = gender;
+      document.getElementById("male-button").style.background = "";
+      document.getElementById("female-button").style.background = "";
+      document.getElementById("transgender-button").style.background = "";
+      document.getElementById(gender + "-button").style.background = "#80ac81";
+    }
+
+  </script>
+<script>
+let scaryVoice = null;
+
+function speak(text, voice) {
+    return new Promise(resolve => {
+        const u = new SpeechSynthesisUtterance(text.replace(/<br>/g, " ")); 
+        u.voice = voice;
+        u.pitch = 0.4;
+        u.rate = 0.85;
+        u.volume = 1.0;
+        u.onend = resolve;
+        speechSynthesis.speak(u);
+    });
+}
+
+function loadVoice() {
+    return new Promise(resolve => {
+        let voices = speechSynthesis.getVoices();
+        if (voices.length !== 0) {
+            resolve(selectDeepVoice(voices));
+        } else {
+            speechSynthesis.onvoiceschanged = () => {
+                voices = speechSynthesis.getVoices();
+                resolve(selectDeepVoice(voices));
+            };
+        }
+    });
+}
+
+function selectDeepVoice(voices) {
+    let male = voices.filter(v =>
+        v.name.toLowerCase().includes("male") ||
+        v.name.toLowerCase().includes("deep") ||
+        v.name.toLowerCase().includes("fred") ||
+        v.name.toLowerCase().includes("bass")
+    );
+    return male[0] || voices[0];
+}
+
+// Load the voice first
+loadVoice().then(v => scaryVoice = v);
+
+// Modify nextPartOfStory to speak
+function nextPartOfStory() {
+  if (storyIndex >= 3 && storyIndex <= 8) {
+    if (storyIndex === 5) {
+      if (sinisterGender === null) {
+        document.getElementById("error-message").style.display = "block";
+        return;
+      }
+    } else if (storyIndex === 7) {
+      if (document.getElementById("color-picker").value === "") {
+        document.getElementById("error-message").style.display = "block";
+        return;
+      } else {
+        sinisterColor = document.getElementById("color-picker").value;
+      }
+    } else {
+      if (document.getElementById("input-tag").value.trim() === "") {
+        document.getElementById("error-message").style.display = "block";
+        return;
+      }
+      if (storyIndex === 6 && (isNaN(document.getElementById("input-tag").value) || document.getElementById("input-tag").value < 0 || document.getElementById("input-tag").value > 99)) {
+        document.getElementById("error-message").style.display = "block";
+        return;
+      }
+    }
+  }
+
+  document.getElementById("error-message").style.display = "none";
+  storyIndex++;
+  document.getElementById("story").innerHTML = stories[storyIndex];
+
+  // Speak the story text
+  if (scaryVoice) {
+      speak(stories[storyIndex], scaryVoice);
+  } else {
+      loadVoice().then(v => speak(stories[storyIndex], v));
+  }
+
+  // rest of your code for showing/hiding inputs/buttons
+  if (storyIndex >= 3 && storyIndex <= 8) {
+    if (storyIndex === 5) {
+      document.getElementById("input-tag").style.display = "none";
+      document.getElementById("gender-buttons").style.display = "block";
+      document.getElementById("color-input").style.display = "none";
+    } else if (storyIndex === 7) {
+      document.getElementById("input-tag").style.display = "none";
+      document.getElementById("gender-buttons").style.display = "none";
+      document.getElementById("color-input").style.display = "block";
+    } else {
+      document.getElementById("input-tag").style.display = "block";
+      document.getElementById("gender-buttons").style.display = "none";
+      document.getElementById("color-input").style.display = "none";
+      if (storyIndex === 6) {
+        document.getElementById("input-tag").type = "number";
+        document.getElementById("input-tag").min = "0";
+        document.getElementById("input-tag").max = "99";
+      } else {
+        document.getElementById("input-tag").type = "text";
+      }
+      document.getElementById("input-tag").value = "";
+    }
+  } else {
+    document.getElementById("input-tag").style.display = "none";
+    document.getElementById("gender-buttons").style.display = "none";
+    document.getElementById("color-input").style.display = "none";
+    document.getElementById("input-tag").value = "";
+  }
+
+if (storyIndex === stories.length - 1) {
+    document.getElementById("continue-button").style.display = "none";
+    // Speak the last line and then redirect
+    speak(stories[storyIndex], scaryVoice).then(() => {
+        window.location.href = "https://A.com";
+    });
+}
+}
+</script>
+  <script>
+    const splashScreen = document.getElementById('splash-screen');
+    const mainContent = document.getElementById('main-content');
+
+    setTimeout(function() {
+      splashScreen.style.display = 'none';
+      mainContent.classList.add('show');
+    }, 6000);
+  </script>
+</body>
+</html>
