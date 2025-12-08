@@ -19,73 +19,6 @@
       "Don't worry! They will be punished as said in Garuda Purana! <br><br>"
     ];
 
-    function nextPartOfStory() {
-      if (storyIndex >= 3 && storyIndex <= 8) {
-        if (storyIndex === 5) {
-          if (sinisterGender === null) {
-            document.getElementById("error-message").style.display = "block";
-            return;
-          }
-        } else if (storyIndex === 7) {
-          if (document.getElementById("color-picker").value === "") {
-            document.getElementById("error-message").style.display = "block";
-            return;
-          } else {
-            sinisterColor = document.getElementById("color-picker").value;
-          }
-        } else {
-          if (document.getElementById("input-tag").value.trim() === "") {
-            document.getElementById("error-message").style.display = "block";
-            return;
-          }
-          if (storyIndex === 6 && (isNaN(document.getElementById("input-tag").value) || document.getElementById("input-tag").value < 0 || document.getElementById("input-tag").value > 99)) {
-            document.getElementById("error-message").style.display = "block";
-            return;
-          }
-        }
-      }
-
-      document.getElementById("error-message").style.display = "none";
-      storyIndex++;
-      document.getElementById("story").innerHTML = stories[storyIndex];
-
-      if (storyIndex >= 3 && storyIndex <= 8) {
-        if (storyIndex === 5) {
-          document.getElementById("input-tag").style.display = "none";
-          document.getElementById("gender-buttons").style.display = "block";
-          document.getElementById("color-input").style.display = "none";
-        } else if (storyIndex === 7) {
-          document.getElementById("input-tag").style.display = "none";
-          document.getElementById("gender-buttons").style.display = "none";
-          document.getElementById("color-input").style.display = "block";
-        } else {
-          document.getElementById("input-tag").style.display = "block";
-          document.getElementById("gender-buttons").style.display = "none";
-          document.getElementById("color-input").style.display = "none";
-          if (storyIndex === 6) {
-            document.getElementById("input-tag").type = "number";
-            document.getElementById("input-tag").min = "0";
-            document.getElementById("input-tag").max = "99";
-          } else {
-            document.getElementById("input-tag").type = "text";
-          }
-          document.getElementById("input-tag").value = "";
-        }
-      } else {
-        document.getElementById("input-tag").style.display = "none";
-        document.getElementById("gender-buttons").style.display = "none";
-        document.getElementById("color-input").style.display = "none";
-        document.getElementById("input-tag").value = "";
-      }
-
-      if (storyIndex === stories.length - 1) {
-document.getElementById("continue-button").style.display = "none";
-setTimeout(() => {
-    window.location.href = 'Anniyan Login.html';
-}, 5000);
-      }
-    }
-
     function selectGender(gender) {
       sinisterGender = gender;
       document.getElementById("male-button").style.background = "";
@@ -137,26 +70,13 @@ loadVoice().then(v => scaryVoice = v);
 function nextPartOfStory() {
   if (storyIndex >= 3 && storyIndex <= 8) {
     if (storyIndex === 5) {
-      if (sinisterGender === null) {
-        document.getElementById("error-message").style.display = "block";
-        return;
-      }
+      if (sinisterGender === null) { document.getElementById("error-message").style.display = "block"; return; }
     } else if (storyIndex === 7) {
-      if (document.getElementById("color-picker").value === "") {
-        document.getElementById("error-message").style.display = "block";
-        return;
-      } else {
-        sinisterColor = document.getElementById("color-picker").value;
-      }
+      if (document.getElementById("color-picker").value === "") { document.getElementById("error-message").style.display = "block"; return; }
+      else sinisterColor = document.getElementById("color-picker").value;
     } else {
-      if (document.getElementById("input-tag").value.trim() === "") {
-        document.getElementById("error-message").style.display = "block";
-        return;
-      }
-      if (storyIndex === 6 && (isNaN(document.getElementById("input-tag").value) || document.getElementById("input-tag").value < 0 || document.getElementById("input-tag").value > 99)) {
-        document.getElementById("error-message").style.display = "block";
-        return;
-      }
+      if (document.getElementById("input-tag").value.trim() === "") { document.getElementById("error-message").style.display = "block"; return; }
+      if (storyIndex === 6 && (isNaN(document.getElementById("input-tag").value) || document.getElementById("input-tag").value < 0 || document.getElementById("input-tag").value > 99)) { document.getElementById("error-message").style.display = "block"; return; }
     }
   }
 
@@ -164,11 +84,8 @@ function nextPartOfStory() {
   storyIndex++;
   document.getElementById("story").innerHTML = stories[storyIndex];
 
-  if (scaryVoice) {
-      speak(stories[storyIndex], scaryVoice);
-  } else {
-      loadVoice().then(v => speak(stories[storyIndex], v));
-  }
+  if (scaryVoice) speak(stories[storyIndex], scaryVoice);
+  else loadVoice().then(v => speak(stories[storyIndex], v));
 
   if (storyIndex >= 3 && storyIndex <= 8) {
     if (storyIndex === 5) {
@@ -187,9 +104,7 @@ function nextPartOfStory() {
         document.getElementById("input-tag").type = "number";
         document.getElementById("input-tag").min = "0";
         document.getElementById("input-tag").max = "99";
-      } else {
-        document.getElementById("input-tag").type = "text";
-      }
+      } else document.getElementById("input-tag").type = "text";
       document.getElementById("input-tag").value = "";
     }
   } else {
@@ -199,14 +114,14 @@ function nextPartOfStory() {
     document.getElementById("input-tag").value = "";
   }
 
-if (storyIndex === stories.length - 1) {
+  if (storyIndex === stories.length - 1) {
     document.getElementById("continue-button").style.display = "none";
-	alert("This action may take some time. Kindly wait!");
-    speak(stories[storyIndex], scaryVoice).then(() => {
-        window.location.href = "https://harish040805.github.io/anniyan/";
-    });
+    alert("This action may take some time. Kindly wait!");
+    const speakPromise = scaryVoice ? speak(stories[storyIndex], scaryVoice) : loadVoice().then(v => speak(stories[storyIndex], v));
+    speakPromise.then(() => { window.location.href = "https://harish040805.github.io/anniyan/"; });
+  }
 }
-}
+
     const splashScreen = document.getElementById('splash-screen');
     const mainContent = document.getElementById('main-content');
 
