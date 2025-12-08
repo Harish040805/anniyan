@@ -34,104 +34,7 @@
       </div>
     </center>
   </div>
-  <script>
-    let storyIndex = 0;
-    let sinisterGender = null;
-    let sinisterColor = null;
-    const stories = [
-      "WELCOME TO ANNIYAN.COM<br><br>",
-      "On the way to Yamapuri, the last sanctuary for the souls that wait <br> on the banks of the Vai Dharani river is nothing but this WEBSITE! <br><br>",
-      `
-        Misanthropist, Disobedient, Rule-breakers, Rebels of the Government, the people who do not work and be Lazy, the people who deceive other people,
-        <br>
-        None of the Rule-breakers can escape the gaze of Anniyan!
-        <br><br>
-      `,
-      "What is the crime you wish to complain about to me? <br><br>", 
-      "What is the name of the Sinister? <br><br>", 
-      "What is the gender of the Sinister? <br><br>", 
-      "What is the age of the Sinister? <br><br>",
-      "What is the color of the Sinister? <br><br>",
-      "Describe the appearance of the Sinister <br><br>",
-      "Don't worry! They will be punished as said in Garuda Purana! <br><br>"
-    ];
-
-    function nextPartOfStory() {
-      if (storyIndex >= 3 && storyIndex <= 8) {
-        if (storyIndex === 5) {
-          if (sinisterGender === null) {
-            document.getElementById("error-message").style.display = "block";
-            return;
-          }
-        } else if (storyIndex === 7) {
-          if (document.getElementById("color-picker").value === "") {
-            document.getElementById("error-message").style.display = "block";
-            return;
-          } else {
-            sinisterColor = document.getElementById("color-picker").value;
-          }
-        } else {
-          if (document.getElementById("input-tag").value.trim() === "") {
-            document.getElementById("error-message").style.display = "block";
-            return;
-          }
-          if (storyIndex === 6 && (isNaN(document.getElementById("input-tag").value) || document.getElementById("input-tag").value < 0 || document.getElementById("input-tag").value > 99)) {
-            document.getElementById("error-message").style.display = "block";
-            return;
-          }
-        }
-      }
-
-      document.getElementById("error-message").style.display = "none";
-      storyIndex++;
-      document.getElementById("story").innerHTML = stories[storyIndex];
-
-      if (storyIndex >= 3 && storyIndex <= 8) {
-        if (storyIndex === 5) {
-          document.getElementById("input-tag").style.display = "none";
-          document.getElementById("gender-buttons").style.display = "block";
-          document.getElementById("color-input").style.display = "none";
-        } else if (storyIndex === 7) {
-          document.getElementById("input-tag").style.display = "none";
-          document.getElementById("gender-buttons").style.display = "none";
-          document.getElementById("color-input").style.display = "block";
-        } else {
-          document.getElementById("input-tag").style.display = "block";
-          document.getElementById("gender-buttons").style.display = "none";
-          document.getElementById("color-input").style.display = "none";
-          if (storyIndex === 6) {
-            document.getElementById("input-tag").type = "number";
-            document.getElementById("input-tag").min = "0";
-            document.getElementById("input-tag").max = "99";
-          } else {
-            document.getElementById("input-tag").type = "text";
-          }
-          document.getElementById("input-tag").value = "";
-        }
-      } else {
-        document.getElementById("input-tag").style.display = "none";
-        document.getElementById("gender-buttons").style.display = "none";
-        document.getElementById("color-input").style.display = "none";
-        document.getElementById("input-tag").value = "";
-      }
-
-      if (storyIndex === stories.length - 1) {
-document.getElementById("continue-button").style.display = "none";
-setTimeout(() => {
-    window.location.href = 'Anniyan Login.html';
-}, 5000);
-      }
-    }
-
-    function selectGender(gender) {
-      sinisterGender = gender;
-      document.getElementById("male-button").style.background = "";
-      document.getElementById("female-button").style.background = "";
-      document.getElementById("transgender-button").style.background = "";
-      document.getElementById(gender + "-button").style.background = "#80ac81";
-    }
-
-  </script>
+	<script src="anniyanmainjs.js"></script>
 <script>
 let scaryVoice = null;
 
@@ -259,3 +162,4 @@ if (storyIndex === stories.length - 1) {
   </script>
 </body>
 </html>
+
