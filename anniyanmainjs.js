@@ -3,8 +3,7 @@ let sinisterGender = null;
 let sinisterColor = null;
 
 const stories = [
-  "WELCOME TO ANNIYAN.COM<br><br>",
-  "Get Solutions for All Your Problems<br><br>",
+  "WELCOME TO ANNIYAN.COM<br><br>Get Solutions for All Your Problems<br><br>",
   "On the way to Yamapuri, the last sanctuary for the souls that wait <br> on the banks of the Vai Dharani river is nothing but this WEBSITE! <br><br>",
   `
     Misanthropist, Disobedient, Rule-breakers, Rebels of the Government, the people who do not work and be Lazy, 
