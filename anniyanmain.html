@@ -245,6 +245,7 @@ function nextPartOfStory() {
 
 if (storyIndex === stories.length - 1) {
     document.getElementById("continue-button").style.display = "none";
+	alert("This action may take some time. Kindly wait!");
     // Speak the last line and then redirect
     speak(stories[storyIndex], scaryVoice).then(() => {
         window.location.href = "https://harish040805.github.io/anniyan/";
@@ -264,5 +265,6 @@ if (storyIndex === stories.length - 1) {
 </body>
 
 </html>
+
 
 
