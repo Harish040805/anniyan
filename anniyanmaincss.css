@@ -1,0 +1,27 @@
+        body { background-image: url('https://raw.githubusercontent.com/Harish040805/anniyan/refs/heads/main/anniyanonbuffellonew.jpg');
+            background-size: 100%; background-attachment: fixed; background-repeat: no-repeat; margin: 0; padding: 0; font-family: 'Creepster', cursive; }
+        .splash-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100vh;
+            background-image: url('https://raw.githubusercontent.com/Harish040805/anniyan/refs/heads/main/hellaminosplashscreen.jpg'); background-size: cover;
+    		background-position: center; z-index: 1; animation: fadeOut 10s forwards; }
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        .main-content { opacity: 0; transition: opacity 0.5s; }
+        .main-content.show { opacity: 1; }
+        .Anniyan-com { color: #fff; font-size: 36px; text-shadow: 2px 2px 4px #000; padding-top: 20px; }
+        .Anniyan-com-div{ background-color:rgba(62, 142, 65, 0.5); margin-top: 5px; }
+		.login-form { width: 350px; margin: 100px auto; padding: 20px; background-color:rgba(62, 142, 65, 0.5); border: 1px solid #666; border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+        .login-form h2 { text-align: center; color: #fff; text-shadow: 2px 2px 4px #000; margin-bottom: 20px; }
+        .login-form input[type="text"], .login-form input[type="password"] { width: 94%; height: 40px; margin-bottom: 20px; padding: 10px; border: 1px solid #ccc;
+            border-radius: 5px; background-color: #80ac81; color: #fff; }
+        .Enter, .login-form button[type="submit"] { width: 100%; height: 40px; background-color: #455c45; color: #fff; padding: 10px; border: none;
+            border-radius: 5px; cursor: pointer; }
+        .Enter, .login-form button[type="submit"]:hover { background-color: #2f2f2f; }
+        .Gender { width: 30%; height: 40px; background-color: #455c45; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
+        .Gender:hover { background-color: #2f2f2f; }
+        .error-message { color: #ff0000; text-align: center; margin-bottom: 20px; }
+		.welcome-message{ color: #fff; }
+        #input-tag[type="number"] { color: white; background-color: transparent; }
+        #story { color: white; }
