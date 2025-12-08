@@ -1,8 +1,8 @@
 body { background-image: url("https://harish040805.github.io/anniyan/anniyancom.jpg"); background-size: 100% 100%; background-repeat: no-repeat; margin: 0;
     padding: 0; height: 100vh; width: 100%; }
 .splash-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; 
-	background-image: url('https://i.pinimg.com/736x/b3/8b/f7/b38bf71d8a4109737455a9f828d0e481.jpg'); background-size: cover; background-position: center;
-    z-index: 1; animation: fadeOut 6s forwards; }
+	background-image: url('https://raw.githubusercontent.com/Harish040805/anniyan/refs/heads/main/hellsplashscreen.jpg'); background-size: cover; 
+	background-position: center; z-index: 1; animation: fadeOut 6s forwards; }
         @keyframes fadeOut {
             0% { opacity: 1; }
             100% { opacity: 0; }
@@ -29,3 +29,4 @@ body { background-image: url("https://harish040805.github.io/anniyan/anniyancom.
 .welcome-message{ color: #fff; }
 #input-tag[type="number"] { color: white; background-color: transparent; }
 #story { color: white; }
+
