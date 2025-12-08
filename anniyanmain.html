@@ -34,7 +34,6 @@
       </div>
     </center>
   </div>
-
   <script>
     let storyIndex = 0;
     let sinisterGender = null;
@@ -172,10 +171,8 @@ function selectDeepVoice(voices) {
     return male[0] || voices[0];
 }
 
-// Load the voice first
 loadVoice().then(v => scaryVoice = v);
 
-// Modify nextPartOfStory to speak
 function nextPartOfStory() {
   if (storyIndex >= 3 && storyIndex <= 8) {
     if (storyIndex === 5) {
@@ -206,14 +203,12 @@ function nextPartOfStory() {
   storyIndex++;
   document.getElementById("story").innerHTML = stories[storyIndex];
 
-  // Speak the story text
   if (scaryVoice) {
       speak(stories[storyIndex], scaryVoice);
   } else {
       loadVoice().then(v => speak(stories[storyIndex], v));
   }
 
-  // rest of your code for showing/hiding inputs/buttons
   if (storyIndex >= 3 && storyIndex <= 8) {
     if (storyIndex === 5) {
       document.getElementById("input-tag").style.display = "none";
@@ -263,8 +258,4 @@ if (storyIndex === stories.length - 1) {
     }, 6000);
   </script>
 </body>
-
 </html>
-
-
-
