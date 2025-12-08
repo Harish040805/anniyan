@@ -1,5 +1,5 @@
         body {
-            background-image: url('C:/Users/HP/OneDrive/Desktop/Anniyan.com/anniyanonbuffellonew.jpg');
+            background-image: url('https://raw.githubusercontent.com/Harish040805/anniyan/refs/heads/main/anniyanonbuffellonew.jpg');
             background-size: 100%;
             background-attachment: fixed;
             background-repeat: no-repeat;
@@ -13,7 +13,7 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background-image: url('https://i.pinimg.com/736x/b3/8b/f7/b38bf71d8a4109737455a9f828d0e481.jpg');
+            background-image: url('https://raw.githubusercontent.com/Harish040805/anniyan/refs/heads/main/hellsplashscreen.jpg');
             background-size: cover;
             background-position: center;
             z-index: 1;
@@ -110,3 +110,4 @@
         #story {
             color: white;
         }
+
