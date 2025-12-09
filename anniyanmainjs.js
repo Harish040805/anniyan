@@ -139,7 +139,7 @@ async function nextPartOfStory() {
       document.getElementById("color-input").style.display = "none";
       if (storyIndex === 6) {
         document.getElementById("input-tag").type = "number";
-        document.getElementById("input-tag").min = "0";
+        document.getElementById("input-tag").min = "16";
         document.getElementById("input-tag").max = "99";
       } else {
         document.getElementById("input-tag").type = "text";
