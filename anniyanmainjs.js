@@ -97,10 +97,19 @@ async function nextPartOfStory() {
       if (storyIndex === 6) {
         const n = Number(input);
         if (Number.isNaN(n) || n < 0 || n > 99) {
+          document.getElementById("error-message").innerHTML = "Please enter a valid age";
           document.getElementById("error-message").style.display = "block";
           btn.disabled = false;
           return;
         }
+         if (n < 16) { 
+        document.getElementById("error-message").innerHTML = 
+            "It cannot be considered as a serious crime for people of age under 16!";
+        document.getElementById("error-message").style.display = "block";
+        btn.disabled = false;
+        return;
+    }
+      }
       }
     }
   }
