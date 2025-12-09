@@ -108,7 +108,6 @@ async function nextPartOfStory() {
         document.getElementById("error-message").style.display = "block";
         btn.disabled = false;
         return;
-    }
       }
       }
     }
