@@ -6,15 +6,22 @@
 <title>Redirect Page</title>
 <style>
     body, html { height: 100%; margin: 0; }
-    body { background-image: url('https://raw.githubusercontent.com/Harish040805/anniyan/refs/heads/main/hellamino.gif'); background-size: cover;
-        background-position: center; background-repeat: no-repeat; }
+    body { background-image: url('https://raw.githubusercontent.com/Harish040805/anniyan/refs/heads/main/hellamino.gif'); 
+        background-size: cover; background-position: center; background-repeat: no-repeat; }
 </style>
 </head>
 <body>
+<audio id="bgMusic" src="anniyanthemmusic.mp3" autoplay loop></audio>
 <script>
-    setTimeout(function() {
-        window.location.href = "https://harish040805.github.io/anniyan/anniyanmain.html";
-    }, 5000);
+window.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('bgMusic');
+    audio.play().catch(() => {
+        console.log('Autoplay blocked. Click to start music.');
+    });
+});
+setTimeout(function() {
+    window.location.href = "https://harish040805.github.io/anniyan/anniyanmain.html";
+}, 5000);
 </script>
 </body>
 </html>
