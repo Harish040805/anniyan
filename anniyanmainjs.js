@@ -21,6 +21,7 @@ const stories = [
   "Don't worry! They will be punished as said in Garuda Purana! <br><br>"
 ];
 
+
 function selectGender(gender) {
   sinisterGender = gender;
   document.getElementById("male-button").style.background = "";
@@ -93,6 +94,12 @@ async function nextPartOfStory() {
       sinisterColor = document.getElementById("color-picker").value;
     }
 
+if (storyIndex === stories.length - 1) {
+  stories[storyIndex] = `Don't worry! They will be punished as said in Garuda Purana!<br>
+  on ${getMockPunishmentDate()} <br><br>`;
+}
+  
+      
     else {
       const input = document.getElementById("input-tag").value.trim();
       if (input === "") {
@@ -168,6 +175,26 @@ async function nextPartOfStory() {
       window.location.href = "https://harish040805.github.io/anniyan/";
     });
   }
+}
+
+function getMockPunishmentDate() {
+  const today = new Date();
+  let day, month, year;
+
+  // Year: random between max(today.year + 0) to 2100
+  year = Math.floor(Math.random() * (2100 - today.getFullYear() + 1)) + today.getFullYear();
+
+  // Month: if year is this year, month must be >= current month + 1
+  if (year === today.getFullYear()) {
+    month = Math.floor(Math.random() * (12 - (today.getMonth() + 1) + 1)) + (today.getMonth() + 1);
+  } else {
+    month = Math.floor(Math.random() * 12) + 1;
+  }
+
+  // Day: random between 1 and 29 (always safe)
+  day = Math.floor(Math.random() * 29) + 1;
+
+  return `${day.toString().padStart(2, '0')}-${month.toString().padStart(2, '0')}-${year}`;
 }
 
 const splashScreen = document.getElementById('splash-screen');
