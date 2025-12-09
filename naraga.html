@@ -3,27 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redirect Page</title>
+<title>Anniyan.com | Redirect Page</title>
 <style>
     body, html { height: 100%; margin: 0; }
-    body { background-image: url('https://raw.githubusercontent.com/Harish040805/anniyan/refs/heads/main/hellamino.gif'); 
-        background-size: cover; background-position: center; background-repeat: no-repeat; }
+    .bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; background-repeat: no-repeat;
+        transition: opacity 1s ease-in-out; }
+    #bg1 { opacity: 1; }
+    #bg2 { opacity: 0; }
 </style>
 </head>
 <body>
+<div id="bg1" class="bg"></div>
+<div id="bg2" class="bg"></div>
 <audio id="bgMusic" src="anniyanthememusic.mp3" autoplay loop></audio>
 <script>
+const images = [
+    'https://raw.githubusercontent.com/Harish040805/anniyan/refs/heads/main/naragai.gif',
+    'https://raw.githubusercontent.com/Harish040805/anniyan/refs/heads/main/naragaii.gif',
+    'https://raw.githubusercontent.com/Harish040805/anniyan/refs/heads/main/hellamino.gif'
+];
+let current = 0;
+const bg1 = document.getElementById('bg1');
+const bg2 = document.getElementById('bg2');
+bg1.style.backgroundImage = `url(${images[0]})`;
 window.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('bgMusic');
-    audio.play().catch(() => {
-        console.log('Autoplay blocked. Click to start music.');
-    });
+    audio.play().catch(() => {});
 });
-setTimeout(function() {
+setInterval(() => {
+    const next = (current + 1) % images.length;
+    if (bg1.style.opacity == "1") {
+        bg2.style.backgroundImage = `url(${images[next]})`;
+        bg2.style.opacity = 1;
+        bg1.style.opacity = 0;
+    } else {
+        bg1.style.backgroundImage = `url(${images[next]})`;
+        bg1.style.opacity = 1;
+        bg2.style.opacity = 0;
+    }
+    current = next;
+}, 5000); 
+setTimeout(() => {
     window.location.href = "https://harish040805.github.io/anniyan/anniyanmain.html";
-}, 60000);
+}, 15000);
 </script>
 </body>
 </html>
-
-
