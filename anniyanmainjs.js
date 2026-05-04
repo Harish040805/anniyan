@@ -162,15 +162,18 @@ async function nextPartOfStory() {
 }
 function getMockPunishmentDate() {
   const today = new Date();
-  let day, month, year;
-  year = Math.floor(Math.random() * (2100 - today.getFullYear() + 1)) + today.getFullYear();
-  if (year === today.getFullYear()) {
-    month = Math.floor(Math.random() * (12 - (today.getMonth() + 1) + 1)) + (today.getMonth() + 1);
-  } else {
-    month = Math.floor(Math.random() * 12) + 1;
-  }
-  day = Math.floor(Math.random() * 29) + 1;
-  return `${day.toString().padStart(2, '0')}-${month.toString().padStart(2, '0')}-${year}`;
+  const startDate = new Date(today);
+  startDate.setDate(startDate.getDate() + 1);
+  const endDate = new Date(today);
+  endDate.setFullYear(endDate.getFullYear() + 1);
+  const randomTime =
+    startDate.getTime() +
+    Math.random() * (endDate.getTime() - startDate.getTime());
+  const randomDate = new Date(randomTime);
+  const day = randomDate.getDate().toString().padStart(2, '0');
+  const month = (randomDate.getMonth() + 1).toString().padStart(2, '0');
+  const year = randomDate.getFullYear();
+  return `${day}-${month}-${year}`;
 }
 const splashScreen = document.getElementById('splash-screen');
 const mainContent = document.getElementById('main-content');
